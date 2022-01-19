@@ -23,7 +23,7 @@ mix.options({
 });
 
 mix.js('src/js/app.js', 'js')
-    //.vue()
+    .vue()
     .sass('src/styles/app.scss', 'css')
     .sourceMaps()
     //.eslint({
@@ -41,3 +41,4 @@ mix.browserSync({
     notify: false,
     server: "./dist",
 });
+
