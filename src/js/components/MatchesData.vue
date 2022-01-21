@@ -1,8 +1,8 @@
 <template>
   <div class="header-component">
-    <MatchesFilter :resultsForSearch="matchesFilter.length"
+    <MatchesFilter :countFilteredMatches="matchesFilter.length"
                    :refreshData="refreshData"
-                   @getUsersInput="getUsersInput"/>
+                   @input="input"/>
     <MatchesList :matches="matchesFilter"
                  :isLoading="isLoading"/>          
   </div>
@@ -32,7 +32,7 @@
       MatchesFilter,
     },
     methods: {
-      getUsersInput(input){
+      input(input){
         this.usersInput = input
       },
 
@@ -49,10 +49,10 @@
       matchesFilter() {
         let filteredMatchesArray = [];
         if(this.usersInput !== ""){
-             filteredMatchesArray = this.matches.filter((name) => {
+             filteredMatchesArray = this.matches.filter((match) => {
               let usersInput = this.usersInput.toLowerCase()
-              let firstTeam = name.opponent1NameLocalization.toLowerCase()
-              let secondTeam = name.opponent2NameLocalization.toLowerCase()
+              let firstTeam = match.opponent1NameLocalization.toLowerCase()
+              let secondTeam = match.opponent2NameLocalization.toLowerCase()
              return (firstTeam.indexOf(usersInput) !== -1) + (secondTeam.indexOf(usersInput) !== -1)
              }) 
         } else {

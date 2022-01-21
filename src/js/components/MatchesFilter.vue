@@ -16,8 +16,8 @@
     </div>
     <!-- /.search -->
     <div class="search__report">
-      <div v-if="resultsForSearch" class='search__report_isHasReports' >
-        Результатов по запросу: {{resultsForSearch}} 
+      <div v-if="countFilteredMatches" class='search__report_isHasReports' >
+        Результатов по запросу: {{countFilteredMatches}} 
       </div> 
     </div> 
     <!-- /.search__report -->
@@ -33,10 +33,10 @@
         usersInput: "",
       }
     },
-    props: ['resultsForSearch', 'refreshData'],
+    props: ['countFilteredMatches', 'refreshData'],
     watch: {
       usersInput() { 
-        this.$emit('getUsersInput', this.usersInput);
+        this.$emit('input', this.usersInput);
       },
     },
     mounted(){},
