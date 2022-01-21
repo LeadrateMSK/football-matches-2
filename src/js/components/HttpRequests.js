@@ -1,6 +1,6 @@
 import Betting from '../../libs/betting.js';
 
-export const getDatafromServer = () => new Promise((resolve, reject) => {
+export const getMatchesAPI = () => new Promise((resolve, reject) => {
   const betting = new Betting();
 
   betting.auth({
@@ -9,8 +9,8 @@ export const getDatafromServer = () => new Promise((resolve, reject) => {
     ref: 51,
   })
     .then((token) => {
-      betting.get_matches({ lng: 'ru', count: 15 })
+      betting.get_matches({ lng: 'ru', ref: '1', count: 15 }, 'live')
         .then((matches) => resolve(matches))
-        .fail((err) => reject(err));
+        .catch((err) => reject(err));
     });
 });

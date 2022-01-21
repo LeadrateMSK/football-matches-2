@@ -1,70 +1,64 @@
 <template>
   <div class="header-component">
-    <MatchesFilter @refreshData="refreshData"
-                   @getSearchResults="getSearchResults"
-                   @getUsersInput="getUsersInput"
-                   @getFilteredMatchesArray="getFilteredMatchesArray"
-                   :usersInput="usersInput"
-                   :searchResults="searchResults"
-                   :unfilteredMatchesArray="unfilteredMatchesArray"/>
-    <MatchesList :filteredMatchesArray="filteredMatchesArray"
-                 :isLoading="isLoading"/>    
+    <MatchesFilter :resultsForSearch="matchesFilter.length"
+                   :refreshData="refreshData"
+                   @getUsersInput="getUsersInput"/>
+    <MatchesList :matches="matchesFilter"
+                 :isLoading="isLoading"/>          
   </div>
   <!-- /.header-component -->
 </template>
 
 <script>
-  import MatchesList from './MatchesList.vue'
-  import MatchesFilter from './MatchesFilter.vue'
-  import {getDatafromServer} from './HttpRequests.js'
+  import MatchesList from './MatchesList'
+  import MatchesFilter from './MatchesFilter'
+  import {getMatchesAPI} from './HttpRequests.js'
 
   export default {
     name: 'MatchesData',
     data(){
       return{
-        unfilteredMatchesArray: [],
-        filteredMatchesArray: [],
-        searchResults: 0,
-        usersInput: "",
+        matches: [],
         isLoading: false,
+        usersInput: '',
       }
     },
+    props: [],
     mounted() {
-      this.isLoading = true
-      getDatafromServer()
-      .then(matches => {
-        this.unfilteredMatchesArray = matches.items
-        this.filteredMatchesArray = matches.items
-        this.searchResults = matches.count
-        this.isLoading = false
-      })
+      this.refreshData()
     },
     components: {
       MatchesList,
       MatchesFilter,
     },
     methods: {
-      getUsersInput(usersInput){
-        this.usersInput = usersInput
-      },
-
-      getFilteredMatchesArray(array){
-        this.filteredMatchesArray = array
+      getUsersInput(input){
+        this.usersInput = input
       },
 
       refreshData(){
-      this.isLoading = !this.isLoading
-        getDatafromServer()
+        this.isLoading = true
+        getMatchesAPI()
         .then(matches => {
-          this.unfilteredMatchesArray = matches.items
-          this.filteredMatchesArray = matches.items
-          this.searchResults = matches.count
-          this.isLoading = !this.isLoading
+          this.matches = matches.items
         })
+        .finally(()=>{this.isLoading = false})
       },
-
-      getSearchResults(resultsCount){
-        this.searchResults = resultsCount
+    },
+    computed: {
+      matchesFilter() {
+        let filteredMatchesArray = [];
+        if(this.usersInput !== ""){
+             filteredMatchesArray = this.matches.filter((name) => {
+              let usersInput = this.usersInput.toLowerCase()
+              let firstTeam = name.opponent1NameLocalization.toLowerCase()
+              let secondTeam = name.opponent2NameLocalization.toLowerCase()
+             return (firstTeam.indexOf(usersInput) !== -1) + (secondTeam.indexOf(usersInput) !== -1)
+             }) 
+        } else {
+         return this.matches
+        }
+       return filteredMatchesArray
       }
     }
   }

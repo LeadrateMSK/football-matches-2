@@ -1,0 +1,22 @@
+.loading__text{
+  font-size: 24px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  margin-top: 14.5px;
+  margin-bottom: 20px;      //to avoid text cutting
+}
+
+.loading{
+  width: 100%;
+  text-align: center;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+.loading > .iconify{
+color: #6FCF97;
+font-size: 63px;
+  animation: spin 2s linear 0s infinite;
+}

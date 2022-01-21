@@ -1,0 +1,32 @@
+.table > ul > li{
+  min-width: 740px;
+  position: relative;
+  height: 80px;
+  margin-bottom: 10px;
+  background-color: #FBFBFB;
+  display: flex;
+  color: black;
+}
+
+.table__time{
+  color: gray;
+  margin: auto;
+  margin-left: 15px;
+  margin-right: 0px;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+}
+
+.table__translation{
+  width: 105px;
+  margin: auto;
+  margin-right: 15px;
+  margin-left: 0px;
+  color: gray;
+  font-size: 14px;
+}
+
+.table__translation_able > a{
+  cursor: pointer;
+  color: #6FCF97;
+}

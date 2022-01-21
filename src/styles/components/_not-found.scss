@@ -1,0 +1,20 @@
+.not-found{
+  width: 100%;
+  text-align: center;
+}
+
+.not-found__message{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;      //to avoid text cutting
+}
+
+.not-found__picture > .iconify{
+  font-size: 72px;
+  font-weight: 100;
+  margin-bottom: 19px;
+}
+
