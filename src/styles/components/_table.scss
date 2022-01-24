@@ -3,30 +3,23 @@
   position: relative;
   height: 80px;
   margin-bottom: 10px;
-  background-color: #FBFBFB;
+  background-color: $bg-white;
   display: flex;
   color: black;
-}
-
-.table__time{
-  color: gray;
-  margin: auto;
-  margin-left: 15px;
-  margin-right: 0px;
-  font-family: 'PT Sans', sans-serif;
   font-size: 14px;
-}
 
-.table__translation{
-  width: 105px;
-  margin: auto;
-  margin-right: 15px;
-  margin-left: 0px;
-  color: gray;
-  font-size: 14px;
-}
+  &__time, &__translation{
+    color: gray;
+    margin: auto;
+    margin-left: 15px;
+    margin-right: 0px;
+  }
 
-.table__translation_able > a{
-  cursor: pointer;
-  color: #6FCF97;
+  &__translation{
+    width: 105px;
+  }
+
+  &__translation_able > a{
+    color: $primary;
+  }
 }

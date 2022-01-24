@@ -14,12 +14,15 @@
 <script>
 import Match from "./Match"
 import Loading from "./Loading"
+import NotFoundMatches from "./NotFoundMatches"
+
   export default {
     name: 'match',
     props: ["matches", "isLoading"],
     components: {
       Match,
-      Loading
+      Loading,
+      NotFoundMatches,
     }
   }
 </script>

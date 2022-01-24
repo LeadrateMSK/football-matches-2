@@ -1,29 +1,28 @@
 .versus{
-  margin: auto
-}
+  margin: auto;
 
-.versus__team-first, .versus__team{
-  width: 15vw;
-  min-width: 160px;
-  display: inline-block;
-  vertical-align:middle;
-  font-size: 16px;
-  font-family: 'PT Sans', sans-serif;
-}
+  &__team-first, &__team{
+    width: 15vw;
+    min-width: 160px;
+    display: inline-block;
+    vertical-align:middle;
+    font-size: 16px;
+  }
 
-.versus__team-first{
-  text-align: end;
-}
+  &__team-first{
+    text-align: end;
+  }
 
-.versus__team-img{
-  width: 50px;
-  height: 50px;
-}
+  &__team-img{
+    width: 50px;
+    height: 50px;
+  }
 
-.versus__score{
-  margin: 30px;
-  display: inline-block;
-  font-size: 20px;
-  font-weight: bold;
-  font-family: 'PT Sans', sans-serif;
+  &__score{
+    margin: 30px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
 }

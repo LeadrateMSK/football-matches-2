@@ -9,7 +9,9 @@ export const getMatchesAPI = () => new Promise((resolve, reject) => {
     ref: 51,
   })
     .then((token) => {
-      betting.get_matches({ lng: 'ru', ref: '1', count: 15 }, 'live')
+      betting.get_matches({
+        lng: 'ru', ref: '1', count: 15, sportids: '1',
+      }, 'live')
         .then((matches) => resolve(matches))
         .catch((err) => reject(err));
     });
