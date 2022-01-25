@@ -39,12 +39,5 @@
         this.$emit('input', this.usersInput);
       },
     },
-    mounted(){},
-    methods: {
-
-    }
   }
-  
-
-
 </script>

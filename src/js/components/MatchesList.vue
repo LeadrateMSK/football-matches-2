@@ -2,7 +2,7 @@
   <div>
     <div v-if="!isLoading">
       <NotFoundMatches  v-if="matches.length === 0" class="not-found" />
-      <Match  v-else v-for="match in matches" :match="match" class="table"/>
+      <Match  v-else v-for="match in matches" :key="match.constEventId" :match="match" class="match"/>
     </div>
     <!-- /if -->
     <Loading v-else :isLoading="isLoading"/> 
@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import Match from "./Match"
-import Loading from "./Loading"
-import NotFoundMatches from "./NotFoundMatches"
+  import Match from "./Match"
+  import Loading from "./Loading"
+  import NotFoundMatches from "./NotFoundMatches"
 
   export default {
     name: 'match',

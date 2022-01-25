@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="table__time">
-      {{(new Date(match.timeSec*1000)).getMinutes()}}
+    <div class="match__time">
+     <span>{{ timeSet }}</span>
     </div>
     <!-- /.table__time -->    
     <div class="versus">
@@ -21,8 +21,8 @@
       <!-- /.versus__team-second-localization -->         
     </div>
     <!-- /.versus -->
-    <div class="table__translation">
-      <div v-if="match.hasVideo" class="table__translation_able">
+    <div class="match__translation">
+      <div v-if="match.hasVideo" class="match__translation_able">
         <a :href="match.link" target="_blank">
           <span class="iconify" data-icon="el:play-alt"></span>
             Трансляция
@@ -30,7 +30,7 @@
           <!-- /a -->
         </div>
         <!-- /.table_is-translation-able -->   
-      <div v-else class="table__translation_disable">
+      <div v-else class="match__translation_disable">
         без трансляции
       </div>
       <!-- /.table_is-translation-disable -->
@@ -40,13 +40,34 @@
 </template>
 
 <script>
+    import moment from 'moment'
+
   export default {
     name: 'match',
+    data(){                         
+      return{
+        time: this.match.timeSec
+      }
+    },                              
     props: ["match"],
     methods: {
       getLogo(team){
         return `https://nimblecd.com/sfiles/logo_teams/${team}`
+      },
+
+      startTimer(){                             
+        if (this.time && this.match.gameStatus==0){ //check - if match hasn't start yet
+        setInterval(() => {this.time++}, 1000);     //or had already end
+        }                                           //the timer will not start
+      }                                       
+    },
+    computed: {
+      timeSet(){
+      return moment.utc(this.time*1000).format("HH:mm:ss");
       }
-    }
+    },
+    mounted(){                                  
+      this.startTimer()
+    }                                          
   }
 </script>

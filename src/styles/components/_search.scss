@@ -1,6 +1,7 @@
 .search {
+  margin-top: 90px;
   position: relative; 
-  font-size: 14;
+  font-size: rem(14);
   color: gray;
 
   &__filter {
@@ -9,26 +10,21 @@
 
   .iconify{
     position: absolute;
-    font-size: 16px;
-    top: 107px;
+    font-size: rem(16px);
+    top: 18px;
     left: 17px;
   }
 
   &__input{
     height: 51px;
     width: 360px;
-    margin-top: 90px;
     padding-left: 44px;
 
     &:focus{
       outline:none;
       border: 1px $primary solid;
     }
-  }
-
-  &__report{
-    height: 56px;
-  }
+  } 
   
   &__report_isHasReports{
     margin-top: 20px;
@@ -45,7 +41,7 @@
 
     .iconify{
       position: relative;
-      font-size: 16px;
+      font-size: rem(16px);
       top: 0px;
       left: 0px;
     }

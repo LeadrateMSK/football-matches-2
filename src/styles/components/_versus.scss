@@ -6,10 +6,13 @@
     min-width: 160px;
     display: inline-block;
     vertical-align:middle;
-    font-size: 16px;
+    font-size: rem(16px);
+    margin-left: 20px;
   }
 
   &__team-first{
+    margin-left: 0px;
+    margin-right: 20px;
     text-align: end;
   }
 
@@ -21,7 +24,7 @@
   &__score{
     margin: 30px;
     display: inline-block;
-    font-size: 20px;
+    font-size: rem(20px);
     font-weight: bold;
   }
 
