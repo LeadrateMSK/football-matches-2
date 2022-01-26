@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="match__time">
-     <span>{{ timeSet }}</span>
+      <span v-if="this.time">{{ this.time | moment("utc", "HH:mm:ss")}}</span>
+      <span v-else>{{"00:00:00"}}</span>
     </div>
     <!-- /.table__time -->    
     <div class="versus">
@@ -40,8 +41,6 @@
 </template>
 
 <script>
-    import moment from 'moment'
-
   export default {
     name: 'match',
     data(){                         
@@ -54,17 +53,11 @@
       getLogo(team){
         return `https://nimblecd.com/sfiles/logo_teams/${team}`
       },
-
       startTimer(){                             
         if (this.time && this.match.gameStatus==0){ //check - if match hasn't start yet
         setInterval(() => {this.time++}, 1000);     //or had already end
         }                                           //the timer will not start
       }                                       
-    },
-    computed: {
-      timeSet(){
-      return moment.utc(this.time*1000).format("HH:mm:ss");
-      }
     },
     mounted(){                                  
       this.startTimer()
