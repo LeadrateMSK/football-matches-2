@@ -1,0 +1,56 @@
+.search {
+  margin-top: 90px;
+  position: relative; 
+  font-size: rem(14);
+  color: gray;
+
+  &__filter {
+    display: flex;
+  }
+
+  .iconify{
+    position: absolute;
+    font-size: rem(16px);
+    top: 18px;
+    left: 17px;
+  }
+
+  &__input{
+    height: 51px;
+    width: 360px;
+    padding-left: 44px;
+
+    &:focus{
+      outline:none;
+      border: 1px $primary solid;
+    }
+  } 
+  
+  &__report_isHasReports{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  &__refresh{
+    margin-top: auto;
+    margin-left: auto;
+    width: 51px;
+    height: 51px;
+    background-color: $primary;
+    color: white;
+
+    .iconify{
+      position: relative;
+      font-size: rem(16px);
+      top: 0px;
+      left: 0px;
+    }
+
+  }
+}
+
+
+
+
+
+

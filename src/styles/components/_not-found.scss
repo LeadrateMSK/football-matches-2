@@ -1,0 +1,20 @@
+.not-found{
+  width: 100%;
+  text-align: center;
+  margin-top: 59px;
+
+  &__message{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: rem(24px);
+    font-weight: bold;
+    margin-bottom: 20px;      //to avoid text cutting
+  }
+
+  .iconify{
+    font-size: rem(72px);
+    font-weight: 100;
+    margin-bottom: 19px;
+  }
+  
+}

@@ -1,0 +1,31 @@
+.versus{
+  margin: auto;
+
+  &__team-first, &__team{
+    width: 15vw;
+    min-width: 160px;
+    display: inline-block;
+    vertical-align:middle;
+    font-size: rem(16px);
+    margin-left: 20px;
+  }
+
+  &__team-first{
+    margin-left: 0px;
+    margin-right: 20px;
+    text-align: end;
+  }
+
+  &__team-img{
+    width: 50px;
+    height: 50px;
+  }
+
+  &__score{
+    margin: 30px;
+    display: inline-block;
+    font-size: rem(20px);
+    font-weight: bold;
+  }
+
+}

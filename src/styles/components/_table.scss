@@ -1,0 +1,23 @@
+.match{
+  min-width: 740px;
+  position: relative;
+  height: 80px;
+  margin-bottom: 10px;
+  background-color: $bg-white;
+  display: flex;
+  color: black;
+  font-size: rem(14px);
+
+  &__time, &__translation{
+    color: gray;
+    margin: auto 0 auto 15px;
+  }
+
+  &__translation{
+    width: 105px;
+  }
+
+  &__translation_able > a{
+    color: $primary;
+  }
+}
