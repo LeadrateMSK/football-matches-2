@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="match__time">
-      <span v-if="this.time">{{ this.time | moment("utc", "HH:mm:ss")}}</span>
-      <span v-else>{{"00:00:00"}}</span>
+      <span v-if="this.time">{{ this.time | moment(`mm:ss`)}}</span>
+      <span v-else>{{ match.startDate | moment(`D MMM hh:mm`)}}</span>
     </div>
     <!-- /.table__time -->    
     <div class="versus">
@@ -12,7 +12,7 @@
       <!-- /.versus__team-first-localization --> 
       <img :src="getLogo(match.imageOpponent1)" class="versus__team-img"></img>
       <div class="versus__score">
-        {{match.fullScore.sc1}} : {{match.fullScore.sc2}}
+        {{match.fullScore ? match.fullScore.sc1 :  "--"}} : {{match.fullScore ? match.fullScore.sc2 :  "--"}}
       </div>
       <!-- /.versus__score -->       
       <img :src="getLogo(match.imageOpponent2)" class="versus__team-img"></img>
@@ -26,15 +26,30 @@
       <div v-if="match.hasVideo" class="match__translation_able">
         <a :href="match.link" target="_blank">
           <span class="iconify" data-icon="el:play-alt"></span>
-            Трансляция
-          </a>
-          <!-- /a -->
+          Трансляция
+        </a>
+        <!-- /a -->
         </div>
-        <!-- /.table_is-translation-able -->   
+      <!-- /.table_is-translation-able -->   
       <div v-else class="match__translation_disable">
         без трансляции
       </div>
       <!-- /.table_is-translation-disable -->
+    </div>
+    <!-- /.match-translation -->
+    <div class="match__bet" 
+        :class="{'match__bet_disable':match.oddsLocalization[0].oddsMarket.isBlocked===true}">
+        {{match.oddsLocalization ? match.oddsLocalization[0].oddsMarket : "--"}}
+    </div>
+    <!-- /.match-translation -->
+    <div class="match__bet" 
+        :class="{'match__bet_disable':match.oddsLocalization[1].oddsMarket.isBlocked===true}">
+        {{match.oddsLocalization ? match.oddsLocalization[1].oddsMarket : "--"}}
+    </div>
+    <!-- /.match-translation -->
+    <div class="match__bet" 
+        :class="{'match__bet_disable':match.oddsLocalization[2].oddsMarket.isBlocked===true}">
+        {{match.oddsLocalization ? match.oddsLocalization[2].oddsMarket : "--"}}
     </div>
     <!-- /.table__translation -->   
   </div>

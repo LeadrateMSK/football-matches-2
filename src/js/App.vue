@@ -1,11 +1,13 @@
 <template>
   <div class="container">
     <div class="header-component">
-    <MatchesFilter :countFilteredMatches="matchesFilter.length"
-                   :refreshData="refreshData"
-                   @input="input"/>
+    <!-- <MatchesFilter :countFilteredMatches="matchesFilter.length" -->
+    <MatchesFilter :refreshData="refreshData"
+                   @input="input"
+                   @checkboxClicked="checkboxClicked"/>
     <MatchesList :matches="matchesFilter"
-                 :isLoading="isLoading"/>          
+                 :isLoading="isLoading"
+                 :isLive="isLive"/>          
     </div>
     <!-- /.header-component -->
   </div>
@@ -24,6 +26,7 @@
         matches: [],
         isLoading: false,
         usersInput: '',
+        isLive: '',
       }
     },
     mounted() {
@@ -39,12 +42,17 @@
       },
       refreshData(){
         this.isLoading = true
-        getMatchesAPI()
+        getMatchesAPI(this.isLive)
         .then(matches => {
           this.matches = matches.items
         })
         .finally(()=>{this.isLoading = false})
       },
+
+      checkboxClicked(isChecked){
+        isChecked ? (this.isLive = "live") : (this.isLive = "")
+        this.refreshData()
+      }
     },
     computed: {
       matchesFilter() {

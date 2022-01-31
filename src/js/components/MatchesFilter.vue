@@ -8,19 +8,22 @@
              placeholder='Поиск по оппонентам...'
             >
       <!-- /.search__input -->
-      <!-- /.search__filter -->
+      <label class="search__toggle">
+	      <input type="checkbox" v-model="checkboxClicked">
+  	    <span class="search__toggle-switch"></span>
+        <div class="search__toggle-text"
+             :class="{'search__toggle-text_active':checkboxClicked === true}">
+          LIVE
+        </div>
+        <!-- /.search__toggle-text -->
+      </label>
+      <!-- /.search__toggle -->
       <button class="search__refresh" @click="refreshData">
         <span class="iconify" data-icon="ci:refresh-02"></span>
       </button>
       <!-- /.search__refresh -->
     </div>
-    <!-- /.search -->
-    <div class="search__report">
-      <div v-if="countFilteredMatches" class='search__report_isHasReports' >
-        Результатов по запросу: {{countFilteredMatches}} 
-      </div> 
-    </div> 
-    <!-- /.search__report -->
+    <!-- /.search__filter -->
   </div>
   <!-- /.search -->
 </template>
@@ -31,6 +34,7 @@
     data(){
       return {
         usersInput: "",
+        checkboxClicked: false,
       }
     },
     props: ['countFilteredMatches', 'refreshData'],
@@ -38,6 +42,9 @@
       usersInput() { 
         this.$emit('input', this.usersInput);
       },
+      checkboxClicked(){
+        this.$emit('checkboxClicked', this.checkboxClicked);
+      }
     },
   }
 </script>

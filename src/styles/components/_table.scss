@@ -6,18 +6,54 @@
   background-color: $bg-white;
   display: flex;
   color: black;
-  font-size: rem(14px);
+  font-size: 14px;
 
   &__time, &__translation{
     color: gray;
     margin: auto 0 auto 15px;
   }
 
+  &__time{
+    width: 100px;
+  }
+
   &__translation{
-    width: 105px;
+    width: 125px;
   }
 
   &__translation_able > a{
     color: $primary;
+  }
+
+  &__bet{
+    font-family: 'PT Sans', sans-serif;
+    width: 65px;
+    margin: auto;
+    text-align: center;
+    font-weight: 700;
+    color:black;
+    font-size: rem(16px);
+  }
+
+  &__bet_disable{
+    color:gray;
+  }
+}
+
+.tableHeader{
+  display: flex;
+  height: 55px;
+  margin-bottom: 10px;
+  font-size: rem(14px);
+
+
+  &__time{
+    margin: auto 10px auto 0;
+  }
+
+  &__bet{
+    font-size: rem(20px);
+    font-weight: 700;
+    color: gray;
   }
 }

@@ -1,7 +1,7 @@
 import Betting from '../../libs/betting.js';
 
-export const getMatchesAPI = () => new Promise((resolve, reject) => {
-  const betting = new Betting();
+export const getMatchesAPI = (live) => new Promise((resolve, reject) => {
+  const betting = new Betting(live);
 
   betting.auth({
     client_id: 'marketing-1a49fe24c1af4278c541a52a3c2ffca7',
@@ -10,8 +10,8 @@ export const getMatchesAPI = () => new Promise((resolve, reject) => {
   })
     .then((token) => {
       betting.get_matches({
-        lng: 'ru', sportids: '1',
-      }, 'live')
+        lng: 'ru', sportids: '1', oddsIds: '1, 2, 3',
+      }, live)
         .then((matches) => resolve(matches))
         .catch((err) => reject(err));
     });

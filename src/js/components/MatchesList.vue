@@ -2,7 +2,10 @@
   <div>
     <div v-if="!isLoading">
       <NotFoundMatches  v-if="matches.length === 0" class="not-found" />
-      <Match  v-else v-for="match in matches" :key="match.constEventId" :match="match" class="match"/>
+      <div v-else>
+        <TableHeader :isLive="isLive"/>
+        <Match v-for="match in matches" :key="match.constEventId" :match="match" class="match"/>
+      </div>
     </div>
     <!-- /if -->
     <Loading v-else :isLoading="isLoading"/> 
@@ -15,14 +18,16 @@
   import Match from "./Match"
   import Loading from "./Loading"
   import NotFoundMatches from "./NotFoundMatches"
+  import TableHeader from "./TableHeader"
 
   export default {
     name: 'match',
-    props: ["matches", "isLoading"],
+    props: ["matches", "isLoading", "isLive"],
     components: {
       Match,
       Loading,
       NotFoundMatches,
+      TableHeader,
     }
   }
 </script>

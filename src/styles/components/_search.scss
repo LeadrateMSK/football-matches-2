@@ -1,12 +1,139 @@
 .search {
   margin-top: 90px;
+  margin-bottom: 30px;
   position: relative; 
-  font-size: rem(14);
+  font-size: rem(14px);
   color: gray;
+  min-width: 740px;
 
   &__filter {
     display: flex;
   }
+
+  &__header{
+    min-width: 740px;
+    position: relative;
+    height: 80px;
+    margin-bottom: 10px;
+    background-color: $bg-white;
+    display: flex;
+    color: black;
+    font-size: 14px;
+  }
+
+//===========================
+// TOGGLE LIVE (able-disable)
+//===========================
+
+  &__toggle-text_active{
+    color: $toggle;
+  }
+
+  &__toggle {
+    display: flex;
+    margin-top: auto;
+    margin-left: 20px;   
+    height: 31px;    
+    line-height: 31px;    
+    position: relative;
+    font-size: 14px;
+    user-select: none;	
+  }
+  &__toggle &__toggle-switch {
+    position: relative;	
+    display: inline-block;
+    box-sizing: border-box;			
+    width: 57px;	
+    height: 31px;
+    border-radius: 25%/50%;	
+    vertical-align: top;
+    background: #eee;
+    transition: .2s;
+    margin-right: 10px;;
+  }
+
+  &__toggle-switch:hover{
+    background-color: $toggle;
+    opacity: 0.5;
+  }
+
+  &__toggle &__toggle-switch:before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;	
+    display: inline-block;
+    width: 25px;	
+    height: 25px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+    transition: .15s;
+  }
+
+  &__toggle &__toggle-switch:hover:before {
+    width: 34px;	
+  }
+
+  &__toggle input[type=checkbox] {
+    display: block;	
+    width: 0;
+    height: 0;	
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  &__toggle input[type=checkbox]:not(:disabled):active + &__toggle-switch:before {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
+  }
+  &__toggle input[type=checkbox]:checked + &__toggle-switch {
+    background: $toggle;
+  }
+  &__toggle input[type=checkbox]:checked + &__toggle-switch:before {
+    transform:translateX(25px);
+  }
+
+  &__toggle input[type=checkbox]:checked + &__toggle-switch:hover:before {
+    transform:translateX(16px);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   .iconify{
     position: absolute;
