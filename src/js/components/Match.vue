@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <a :href="match.link" target="_blank">
     <div class="match__time">
-      <span v-if="this.time">{{ this.time | moment(`mm:ss`)}}</span>
-      <span v-else>{{ match.startDate | moment(`D MMM hh:mm`)}}</span>
+      <span v-if="this.time">{{ 0 | moment(`utc, mm:ss`)}}</span>
+      <span v-else>{{ 0 | moment(`D MMM hh:mm`)}}</span>
     </div>
     <!-- /.table__time -->    
     <div class="versus">
@@ -52,7 +52,7 @@
         {{match.oddsLocalization ? match.oddsLocalization[2].oddsMarket : "--"}}
     </div>
     <!-- /.table__translation -->   
-  </div>
+  </a>
 </template>
 
 <script>

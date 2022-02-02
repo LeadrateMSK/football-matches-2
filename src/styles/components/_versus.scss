@@ -1,14 +1,16 @@
 .versus{
   width: calc(30vw + 260px); //
   margin: auto;
+  text-align: center;
 
   &__team-first, &__team{
-    width: 15vw;
-    min-width: 160px;
+    width: auto;
+    width: 100px;
     display: inline-block;
     vertical-align:middle;
     font-size: rem(16px);
     margin-left: 20px;
+    
   }
 
   &__team-first{

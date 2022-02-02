@@ -10,7 +10,7 @@
       <!-- /.search__input -->
       <label class="search__toggle">
 	      <input type="checkbox" v-model="checkboxClicked">
-  	    <span class="search__toggle-switch"></span>
+  	    <span class="search__toggle-switch" tabindex="0"></span>
         <div class="search__toggle-text"
              :class="{'search__toggle-text_active':checkboxClicked === true}">
           LIVE
