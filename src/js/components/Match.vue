@@ -1,8 +1,8 @@
 <template>
   <a :href="match.link" target="_blank">
     <div class="match__time">
-      <span v-if="this.time">{{ 0 | moment(`utc, mm:ss`)}}</span>
-      <span v-else>{{ 0 | moment(`D MMM hh:mm`)}}</span>
+      <span v-if="this.time || this.time==0">{{ time | moment(`mm:ss`)}}</span>
+      <span v-else>{{date}}</span>
     </div>
     <!-- /.table__time -->    
     <div class="versus">
@@ -43,12 +43,12 @@
     </div>
     <!-- /.match-translation -->
     <div class="match__bet" 
-        :class="{'match__bet_disable':match.oddsLocalization[1].oddsMarket.isBlocked===true}">
+        :class="{'match__bet_disable':match.oddsLocalization[1].oddsMarket.isBlocked}">
         {{match.oddsLocalization ? match.oddsLocalization[1].oddsMarket : "--"}}
     </div>
     <!-- /.match-translation -->
     <div class="match__bet" 
-        :class="{'match__bet_disable':match.oddsLocalization[2].oddsMarket.isBlocked===true}">
+        :class="{'match__bet_disable':match.oddsLocalization[2].oddsMarket.isBlocked}">
         {{match.oddsLocalization ? match.oddsLocalization[2].oddsMarket : "--"}}
     </div>
     <!-- /.table__translation -->   
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import moment from 'moment'
   export default {
     name: 'match',
     data(){                         
@@ -76,6 +77,9 @@
     },
     mounted(){                                  
       this.startTimer()
-    }                                          
+    },
+    computed: {
+      date: function(){return moment(this.match.startDate*1000).utc().lang("ru").format('DD MMM HH:mm')} 
+    }                                         
   }
 </script>
