@@ -5,8 +5,7 @@
       <input class="search__input"
              v-model="usersInput"
              type="text" 
-             placeholder='Поиск по оппонентам...'
-            >
+             placeholder='Поиск по оппонентам...'>
       <!-- /.search__input -->
       <label class="search__toggle">
 	      <input type="checkbox" v-model="checkboxClicked">
@@ -37,13 +36,14 @@
         checkboxClicked: false,
       }
     },
-    props: ['countFilteredMatches', 'refreshData'],
+    props: ['refreshData'],
     watch: {
       usersInput() { 
-        this.$emit('input', this.usersInput);
+        this.$store.dispatch('CHANGE_USERINPUT', this.usersInput)
       },
       checkboxClicked(){
-        this.$emit('checkboxClicked', this.checkboxClicked);
+        this.$store.dispatch('CHANGE_ISLIVE', this.checkboxClicked)
+        this.refreshData()
       }
     },
   }

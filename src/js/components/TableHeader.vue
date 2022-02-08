@@ -1,7 +1,7 @@
 <template>
  <div class="tableHeader">
     <div class="match__time tableHeader__time">
-      <div v-if="isLive">Время</div>
+      <div v-if=getIsLive>Время</div>
       <div v-else>Начало</div>
     </div>
     <!-- /.match__time tableHeader__time -->    
@@ -19,8 +19,11 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   export default {
     name: 'tableHeader',
-    props: ["isLive"],
+    computed: {
+       ...mapGetters(['getIsLive']),
+    }
   }
 </script>

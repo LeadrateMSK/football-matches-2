@@ -11,7 +11,7 @@ export const getMatchesAPI = (live) => new Promise((resolve, reject) => {
     .then((token) => {
       betting.get_matches({
         lng: 'ru', sportids: '1', oddsIds: '1, 2, 3',
-      }, live)
+      }, live ? 'live' : '')
         .then((matches) => resolve(matches))
         .catch((err) => reject(err));
     });

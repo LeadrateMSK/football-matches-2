@@ -2,12 +2,8 @@
   <div class="container">
     <div class="header-component">
     <!-- <MatchesFilter :countFilteredMatches="matchesFilter.length" -->
-    <MatchesFilter :refreshData="refreshData"
-                   @input="input"
-                   @checkboxClicked="checkboxClicked"/>
-    <MatchesList :matches="matchesFilter"
-                 :isLoading="isLoading"
-                 :isLive="isLive"/>          
+    <MatchesFilter :refreshData="refreshData"/>
+    <MatchesList :matches="matchesFilter"/>         
     </div>
     <!-- /.header-component -->
   </div>
@@ -18,54 +14,41 @@
   import MatchesList from './components/MatchesList'
   import MatchesFilter from './components/MatchesFilter'
   import {getMatchesAPI} from './components/HttpRequests.js'
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'MatchesData',
-    data(){
-      return{
-        matches: [],
-        isLoading: false,
-        usersInput: '',
-        isLive: '',
-      }
-    },
     mounted() {
-      this.refreshData()
+      this.refreshData();
     },
     components: {
       MatchesList,
       MatchesFilter,
     },
     methods: {
-      input(input){
-        this.usersInput = input
-      },
       refreshData(){
-        this.isLoading = true
-        getMatchesAPI(this.isLive)
+        this.$store.dispatch('CHANGE_LOADING')
+        getMatchesAPI(this.getIsLive)
         .then(matches => {
-          this.matches = matches.items
+          this.$store.dispatch('CHANGE_MATCHES', matches.items)
         })
-        .finally(()=>{this.isLoading = false})
+        .finally(()=>{
+          this.$store.dispatch('CHANGE_LOADING')})
       },
-
-      checkboxClicked(isChecked){
-        isChecked ? (this.isLive = "live") : (this.isLive = "")
-        this.refreshData()
-      }
     },
     computed: {
+      ...mapGetters(['getMatches', 'getUserInput', 'getIsLive']),
       matchesFilter() {
         let filteredMatchesArray = [];
-        if(this.usersInput !== ""){
-             filteredMatchesArray = this.matches.filter((match) => {
-              let usersInput = this.usersInput.toLowerCase()
+        if(this.getUsersInput !== ""){
+             filteredMatchesArray = this.getMatches.filter((match) => {
+              let usersInput = this.getUserInput.toLowerCase()
               let firstTeam = match.opponent1NameLocalization.toLowerCase()
               let secondTeam = match.opponent2NameLocalization.toLowerCase()
              return (firstTeam.indexOf(usersInput) !== -1) + (secondTeam.indexOf(usersInput) !== -1)
              }) 
         } else {
-         return this.matches
+         return this.getMatches
         }
        return filteredMatchesArray
       }
